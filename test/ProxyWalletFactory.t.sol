@@ -9,18 +9,15 @@ import {TestERC20} from "../src/TestERC20.sol";
 
 contract ProxyWalletFactoryTest is Test {
     ProxyWalletFactory public proxyWalletFactory;
-    address public deployer;
-    address public user;
-    address public settlement;
+    address public deployer = makeAddr("DEPLOYER");
+    address public user = makeAddr("USER");
+    address public settlement = makeAddr("SETTLEMENT");
     TestERC20 public token;
 
     address public proxyWalletAddress;
     ProxyWallet public proxyWallet;
 
     function setUp() public {
-        deployer = makeAddr("DEPLOYER");
-        user = makeAddr("USER");
-        settlement = makeAddr("SETTLEMENT");
         token = new TestERC20("TestERC20", "TEST");
 
         vm.startPrank(user);
