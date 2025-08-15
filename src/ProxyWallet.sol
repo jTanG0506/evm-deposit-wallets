@@ -9,23 +9,22 @@ contract ProxyWallet is Ownable {
     error ERC20TransferFailed();
     error NativeTransferFailed();
 
-    constructor() Ownable(msg.sender) {}
+    constructor(address _owner) Ownable(_owner) {}
 
     receive() external payable {}
 
     fallback() external payable {}
 
-    function withdrawERC20(address _token, uint256 _amount) external onlyOwner {
-        bool success = IERC20(_token).transfer(owner(), _amount);
+    function withdrawERC20(address _token, address _to, uint256 _amount) external onlyOwner {
+        bool success = IERC20(_token).transfer(_to, _amount);
 
         if (!success) {
             revert ERC20TransferFailed();
         }
     }
 
-    function withdrawETH() external onlyOwner {
-        uint256 balance = address(this).balance;
-        (bool success, ) = owner().call{value: balance}("");
+    function withdrawETH(address _to, uint256 _amount) external onlyOwner {
+        (bool success,) = _to.call{value: _amount}("");
 
         if (!success) {
             revert NativeTransferFailed();
