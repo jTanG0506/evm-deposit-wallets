@@ -4,5 +4,16 @@ out = "out"
 libs = ["lib"]
 evm_version = "prague"
 gas_reports = ["*"]
+via_ir = true
+optimizer = true
+optimizer_runs = 200
+
+[profile.default.fuzz]
+runs = 1000
+
+[profile.default.invariant]
+runs = 1000
+depth = 15
+fail_on_revert = false
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
