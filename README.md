@@ -1,66 +1,32 @@
-## Foundry
+## evm-deposit-wallets
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### Setup
 
-Foundry consists of:
+Setup `.env` as follows:
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- `ERC20_TOKENS` should be comma separated token addresses
+- `ERC20_AMOUNTS` should be comma separate token amounts
+- `PRIVATE_KEYS` should be comma separated private keys (same length as `ERC20_AMOUNTS`)
 
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```
+SEPOLIA_RPC_URL=""
+ETHERSCAN_API_KEY=""
+DEPLOYER_PRIVATE_KEY=""
+ERC20_TOKENS=""
+ERC20_AMOUNTS=""
+PRIVATE_KEYS=""
 ```
 
-### Test
+### Scripts
+
+### Deploy ERC-20 tokens
 
 ```shell
-$ forge test
+forge script script/DeployERC20.s.sol:DeployTestERC20 --sig "deploy(string,string)" "USDC" "USDC" --rpc-url $SEPOLIA_RPC_URL --broadcast --verify
 ```
 
-### Format
+### Mint ERC-20 tokens
 
 ```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+forge script script/MintERC20.s.sol:MintTestERC20 --sig "mint()" --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
