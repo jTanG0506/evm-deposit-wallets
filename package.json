@@ -1,0 +1,14 @@
+{
+    "name": "evm-deposit-wallets",
+    "module": "index.ts",
+    "type": "module",
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "dependencies": {
+        "ethers": "^6.15.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    }
+}
