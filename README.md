@@ -30,3 +30,9 @@ forge script script/DeployERC20.s.sol:DeployTestERC20 --sig "deploy(string,strin
 ```shell
 forge script script/MintERC20.s.sol:MintTestERC20 --sig "mint()" --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
+
+### Deploy ERC-7702 Implementation and CombineCalls
+
+```shell
+forge script script/Deploy.s.sol:Deploy --sig "deploy()" --rpc-url $SEPOLIA_RPC_URL --broadcast --verify
+```
