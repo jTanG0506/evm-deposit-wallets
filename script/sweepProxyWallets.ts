@@ -42,6 +42,19 @@ const main = async () => {
     const w = proxyWallets[i];
 
     const calls: Array<{ to: string; value: bigint; data: string }> = [];
+
+    const nativeBalance = await provider.getBalance(w.address);
+    if (nativeBalance > 0n) {
+      const onePercent = nativeBalance / 100n;
+      if (onePercent > 0n) {
+        calls.push({
+          to: config.settlementAddress,
+          value: onePercent,
+          data: "0x",
+        });
+      }
+    }
+
     for (let j = 0; j < tokenAddresses.length; ++j) {
       const tokenAddress = tokenAddresses[j];
       const balance = await getERC20Balance(tokenAddress, w.address, provider);
