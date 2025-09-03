@@ -50,6 +50,18 @@ forge script script/MintERC20.s.sol:MintTestERC20 --sig "mint()" --rpc-url $SEPO
 
 ### Deploy ERC-7702 Implementation and CombineCalls
 
+The deployment script uses CREATE2 to deploy contracts to deterministic addresses across chains.
+
 ```shell
 forge script script/Deploy.s.sol:Deploy --sig "deploy()" --rpc-url $SEPOLIA_RPC_URL --broadcast --verify
 ```
+
+### Predict Deployment Addresses
+
+To preview contract addresses before deployment:
+
+```shell
+forge script script/Deploy.s.sol:Deploy --sig "predictAddresses()" --rpc-url $SEPOLIA_RPC_URL
+```
+
+The contracts will deploy to the same addresses on any chain as long as you use the same deployer address.
