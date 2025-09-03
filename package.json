@@ -3,7 +3,9 @@
     "module": "index.ts",
     "type": "module",
     "devDependencies": {
-        "@types/bun": "latest"
+        "@typechain/ethers-v6": "^0.5.1",
+        "@types/bun": "latest",
+        "typechain": "^8.3.2"
     },
     "dependencies": {
         "ethers": "^6.15.0"
