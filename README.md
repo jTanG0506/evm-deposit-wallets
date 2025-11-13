@@ -65,3 +65,18 @@ forge script script/Deploy.s.sol:Deploy --sig "predictAddresses()" --rpc-url $SE
 ```
 
 The contracts will deploy to the same addresses on any chain as long as you use the same deployer address.
+
+### Check for Address Conflicts
+
+Before deploying to multiple chains, it's important to verify that the deterministic addresses are not already occupied. If a contract already exists at the predicted address on any target chain, the deployment will fail. This can happen if:
+- The same salt was previously used with the same deployer address
+- Another project coincidentally deployed to the same address
+- Contracts were deployed in testing and not properly cleaned up
+
+To check multiple chains for conflicts:
+
+```shell
+forge script script/CheckAddresses.s.sol:CheckAddresses --sig "check(string[])" '["https://eth.llamarpc.com","https://polygon-rpc.com","https://mainnet.base.org"]'
+```
+
+The script will report any conflicts and exit with an error if addresses are already occupied, allowing you to choose a different salt if needed.
