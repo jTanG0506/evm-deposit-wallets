@@ -94,40 +94,28 @@ contract ERC7702ProxyWalletSweepTest is Test {
         // Prepare calls for each proxy wallet: transfer entire token balance to settlement
         BatchCallAndSponsor.Call[] memory calls1 = new BatchCallAndSponsor.Call[](3);
         calls1[0] = BatchCallAndSponsor.Call({
-            to: address(usdc),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, usdcBalance1))
+            to: address(usdc), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, usdcBalance1))
         });
         calls1[1] = BatchCallAndSponsor.Call({
-            to: address(usdt),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, usdtBalance1))
+            to: address(usdt), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, usdtBalance1))
         });
         calls1[2] = BatchCallAndSponsor.Call({to: settlement, value: nativeBalance1, data: ""});
 
         BatchCallAndSponsor.Call[] memory calls2 = new BatchCallAndSponsor.Call[](3);
         calls2[0] = BatchCallAndSponsor.Call({
-            to: address(usdc),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, usdcBalance2))
+            to: address(usdc), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, usdcBalance2))
         });
         calls2[1] = BatchCallAndSponsor.Call({
-            to: address(usdt),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, usdtBalance2))
+            to: address(usdt), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, usdtBalance2))
         });
         calls2[2] = BatchCallAndSponsor.Call({to: settlement, value: nativeBalance2, data: ""});
 
         BatchCallAndSponsor.Call[] memory calls3 = new BatchCallAndSponsor.Call[](3);
         calls3[0] = BatchCallAndSponsor.Call({
-            to: address(usdc),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, usdcBalance3))
+            to: address(usdc), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, usdcBalance3))
         });
         calls3[1] = BatchCallAndSponsor.Call({
-            to: address(usdt),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, usdtBalance3))
+            to: address(usdt), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, usdtBalance3))
         });
         calls3[2] = BatchCallAndSponsor.Call({to: settlement, value: nativeBalance3, data: ""});
 

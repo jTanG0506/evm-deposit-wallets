@@ -46,9 +46,7 @@ contract ERC7702ProxyWalletTest is Test {
         BatchCallAndSponsor.Call[] memory calls = new BatchCallAndSponsor.Call[](1);
 
         calls[0] = BatchCallAndSponsor.Call({
-            to: address(token),
-            value: 0,
-            data: abi.encodeCall(ERC20.transfer, (settlement, proxyWalletTokenBalance))
+            to: address(token), value: 0, data: abi.encodeCall(ERC20.transfer, (settlement, proxyWalletTokenBalance))
         });
 
         Vm.SignedDelegation memory signedDelegation = vm.signDelegation(address(implementation), PROXY_WALLET_PK);
